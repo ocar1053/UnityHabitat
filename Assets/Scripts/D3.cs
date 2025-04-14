@@ -42,8 +42,8 @@ public class D3 : MonoBehaviour
         };
         rosWebSocket.ConnectAsync();
 
-        int width = 640;
-        int height = 480;
+        int width = 1280;
+        int height = 720;
         rgbRenderTexture = RenderTexturePool.GetRenderTexture(width, height, RenderTextureFormat.ARGB32);
         depthRenderTexture = RenderTexturePool.GetRenderTexture(width, height, RenderTextureFormat.R16);
 
@@ -56,7 +56,7 @@ public class D3 : MonoBehaviour
     private IEnumerator CaptureAndPublish()
     {
         var waitForEndOfFrame = new WaitForEndOfFrame();
-        float targetFrameRate = 1f / 5f;  
+        float targetFrameRate = 1f / 2f;  
         while (true)
         {
             yield return new WaitForSeconds(targetFrameRate);  

@@ -11,7 +11,9 @@ public class D3 : MonoBehaviour
     [SerializeField] private Camera rgbCamera;
     [SerializeField] private Camera depthCamera;
     [SerializeField] private int cameraId;
-    [SerializeField][Range(0, 100)] private int jpegQuality = 15;
+    [SerializeField][Range(0, 100)] private int jpegQuality = 50;
+    [SerializeField][Range(0.1f, 30.0f)] private float captureFrequency = 2f;
+    [SerializeField] private bool useDepthCamera = true;
     private string rgbTopic;
     private string depthTopic;
 
@@ -56,7 +58,7 @@ public class D3 : MonoBehaviour
     private IEnumerator CaptureAndPublish()
     {
         var waitForEndOfFrame = new WaitForEndOfFrame();
-        float targetFrameRate = 1f / 2f;  
+        float targetFrameRate = 1f / captureFrequency;  
         while (true)
         {
             yield return new WaitForSeconds(targetFrameRate);  
@@ -69,11 +71,14 @@ public class D3 : MonoBehaviour
             rgbCamera.targetTexture = null;
             AsyncGPUReadback.Request(rgbRenderTexture, 0, TextureFormat.RGBA32, OnRGBReadback);
 
-            // Capture Depth
-            depthCamera.targetTexture = depthRenderTexture;
-            depthCamera.Render();
-            depthCamera.targetTexture = null;
-            AsyncGPUReadback.Request(depthRenderTexture, 0, TextureFormat.R16, OnDepthReadback);
+            if (useDepthCamera) {
+                // Capture Depth
+                depthCamera.targetTexture = depthRenderTexture;
+                depthCamera.Render();
+                depthCamera.targetTexture = null;
+                AsyncGPUReadback.Request(depthRenderTexture, 0, TextureFormat.R16, OnDepthReadback);
+            }
+
         }
     }
 

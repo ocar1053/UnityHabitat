@@ -6381,6 +6381,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46398bc5d6905ad429a6d2d973afe002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &523305138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523305139}
+  - component: {fileID: 523305140}
+  m_Layer: 0
+  m_Name: ConnectRos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &523305139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523305138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344257244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &523305140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523305138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c774c22d58a3c49be4883bd71a8dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &528386574
 GameObject:
   m_ObjectHideFlags: 0
@@ -7142,44 +7186,15 @@ GameObject:
   - component: {fileID: 632942296}
   - component: {fileID: 632942295}
   - component: {fileID: 632942294}
-  - component: {fileID: 632942293}
-  - component: {fileID: 632942292}
   - component: {fileID: 632942297}
+  - component: {fileID: 632942298}
   m_Layer: 0
   m_Name: Camera3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &632942292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632942291}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7256cf83afd70cd4fad781b01ede3bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  depthCamera: {fileID: 632942295}
-  cameraId: 3
---- !u!114 &632942293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632942291}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bafd1a8c362d16543a826584d39b326e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carCamera: {fileID: 632942295}
-  CameraTopic: /camera3/image/compressed
+  m_IsActive: 0
 --- !u!81 &632942294
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7263,15 +7278,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 632942291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc112e036c656840a945ef3eb2a7bc1, type: 3}
+  m_Script: {fileID: 11500000, guid: c3b07d562c7cd654da7b102c119790f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rgbCamera: {fileID: 632942295}
-  depthCamera: {fileID: 632942295}
-  cameraId: 3
-  jpegQuality: 50
-  captureFrequency: 2
-  useDepthCamera: 1
+  carCamera: {fileID: 632942295}
+  connectRos: {fileID: 523305140}
+  CameraTopic: /unity_camera_3/image/compressed
+  width: 1280
+  height: 720
+  publishhz: 4
+--- !u!114 &632942298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632942291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f227919d3df5bb247b67731bb22c13b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uberReplacementShader: {fileID: 4800000, guid: 5ec6d508dc8754044b256adb09c701c8, type: 3}
+  connectRos: {fileID: 523305140}
+  DepthTopic: /unity_camera_3/depth/compressed
+  frame_id: camera
+  depthWidth: 1280
+  depthHeight: 720
+  publishHz: 4
+  depthCam: {fileID: 0}
+  lineRendererObject: {fileID: 0}
 --- !u!1 &634642748
 GameObject:
   m_ObjectHideFlags: 8
@@ -8415,7 +8451,8 @@ GameObject:
   - component: {fileID: 788615694}
   - component: {fileID: 788615693}
   - component: {fileID: 788615692}
-  - component: {fileID: 788615695}
+  - component: {fileID: 788615697}
+  - component: {fileID: 788615696}
   m_Layer: 0
   m_Name: Camera1
   m_TagString: Untagged
@@ -8430,7 +8467,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788615689}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &788615693
 Camera:
   m_ObjectHideFlags: 0
@@ -8497,7 +8534,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5208908}
   m_LocalEulerAnglesHint: {x: 40, y: 60, z: 0}
---- !u!114 &788615695
+--- !u!114 &788615696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8506,15 +8543,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 788615689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc112e036c656840a945ef3eb2a7bc1, type: 3}
+  m_Script: {fileID: 11500000, guid: c3b07d562c7cd654da7b102c119790f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rgbCamera: {fileID: 788615693}
-  depthCamera: {fileID: 788615693}
-  cameraId: 1
-  jpegQuality: 50
-  captureFrequency: 2
-  useDepthCamera: 1
+  carCamera: {fileID: 788615693}
+  connectRos: {fileID: 523305140}
+  CameraTopic: /unity_camera_1/image/compressed
+  width: 1280
+  height: 720
+  publishhz: 4
+--- !u!114 &788615697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788615689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f227919d3df5bb247b67731bb22c13b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uberReplacementShader: {fileID: 0}
+  connectRos: {fileID: 523305140}
+  DepthTopic: /unity_camera_1/depth/compressed
+  frame_id: camera
+  depthWidth: 1280
+  depthHeight: 720
+  publishHz: 4
+  depthCam: {fileID: 788615693}
+  lineRendererObject: {fileID: 0}
 --- !u!1 &793060871
 GameObject:
   m_ObjectHideFlags: 8
@@ -12825,13 +12883,14 @@ GameObject:
   - component: {fileID: 1266526493}
   - component: {fileID: 1266526492}
   - component: {fileID: 1266526495}
+  - component: {fileID: 1266526496}
   m_Layer: 0
   m_Name: Camera2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1266526492
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12915,15 +12974,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1266526489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc112e036c656840a945ef3eb2a7bc1, type: 3}
+  m_Script: {fileID: 11500000, guid: f227919d3df5bb247b67731bb22c13b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rgbCamera: {fileID: 1266526493}
-  depthCamera: {fileID: 1266526493}
-  cameraId: 2
-  jpegQuality: 50
-  captureFrequency: 2
-  useDepthCamera: 1
+  uberReplacementShader: {fileID: 4800000, guid: 5ec6d508dc8754044b256adb09c701c8, type: 3}
+  connectRos: {fileID: 523305140}
+  DepthTopic: /unity_camera_2/depth/compressed
+  frame_id: camera
+  depthWidth: 1280
+  depthHeight: 720
+  publishHz: 4
+  depthCam: {fileID: 0}
+  lineRendererObject: {fileID: 0}
+--- !u!114 &1266526496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266526489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b07d562c7cd654da7b102c119790f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carCamera: {fileID: 1266526493}
+  connectRos: {fileID: 523305140}
+  CameraTopic: /unity_camera_2/image/compressed
+  width: 1280
+  height: 720
+  publishhz: 4
 --- !u!1 &1282115090
 GameObject:
   m_ObjectHideFlags: 0
@@ -13637,6 +13717,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9090ae501ff9cd459bec5271d40249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1344257243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344257244}
+  m_Layer: 0
+  m_Name: ROS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344257244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344257243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 523305139}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1349862495
 GameObject:
   m_ObjectHideFlags: 0
@@ -15993,16 +16105,15 @@ GameObject:
   - component: {fileID: 1566771585}
   - component: {fileID: 1566771590}
   - component: {fileID: 1566771589}
-  - component: {fileID: 1566771588}
-  - component: {fileID: 1566771587}
-  - component: {fileID: 1566771586}
+  - component: {fileID: 1566771592}
+  - component: {fileID: 1566771591}
   m_Layer: 0
   m_Name: Camera5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1566771585
 Transform:
   m_ObjectHideFlags: 0
@@ -16018,52 +16129,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5208908}
   m_LocalEulerAnglesHint: {x: 45, y: 180, z: 0}
---- !u!114 &1566771586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566771584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc112e036c656840a945ef3eb2a7bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rgbCamera: {fileID: 1566771590}
-  depthCamera: {fileID: 1566771590}
-  cameraId: 5
-  jpegQuality: 50
-  captureFrequency: 2
-  useDepthCamera: 1
---- !u!114 &1566771587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566771584}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7256cf83afd70cd4fad781b01ede3bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  depthCamera: {fileID: 1566771590}
-  cameraId: 4
---- !u!114 &1566771588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566771584}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bafd1a8c362d16543a826584d39b326e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carCamera: {fileID: 1566771590}
-  CameraTopic: /camera4/image/compressed
 --- !u!81 &1566771589
 AudioListener:
   m_ObjectHideFlags: 0
@@ -16123,6 +16188,45 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1566771591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566771584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f227919d3df5bb247b67731bb22c13b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uberReplacementShader: {fileID: 4800000, guid: 5ec6d508dc8754044b256adb09c701c8, type: 3}
+  connectRos: {fileID: 523305140}
+  DepthTopic: /unity_camera_5/depth/compressed
+  frame_id: camera
+  depthWidth: 1280
+  depthHeight: 720
+  publishHz: 4
+  depthCam: {fileID: 0}
+  lineRendererObject: {fileID: 0}
+--- !u!114 &1566771592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566771584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b07d562c7cd654da7b102c119790f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carCamera: {fileID: 1566771590}
+  connectRos: {fileID: 523305140}
+  CameraTopic: /unity_camera_5/image/compressed
+  width: 1280
+  height: 720
+  publishhz: 4
 --- !u!1 &1569371284
 GameObject:
   m_ObjectHideFlags: 8
@@ -18240,17 +18344,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1769075517}
   - component: {fileID: 1769075522}
-  - component: {fileID: 1769075521}
-  - component: {fileID: 1769075520}
-  - component: {fileID: 1769075519}
-  - component: {fileID: 1769075518}
+  - component: {fileID: 1769075524}
+  - component: {fileID: 1769075523}
   m_Layer: 0
   m_Name: Camera6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1769075517
 Transform:
   m_ObjectHideFlags: 0
@@ -18266,60 +18368,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5208908}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!114 &1769075518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769075516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc112e036c656840a945ef3eb2a7bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rgbCamera: {fileID: 1769075522}
-  depthCamera: {fileID: 1769075522}
-  cameraId: 6
-  jpegQuality: 50
-  captureFrequency: 2
-  useDepthCamera: 1
---- !u!114 &1769075519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769075516}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7256cf83afd70cd4fad781b01ede3bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  depthCamera: {fileID: 1769075522}
-  cameraId: 4
---- !u!114 &1769075520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769075516}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bafd1a8c362d16543a826584d39b326e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carCamera: {fileID: 1769075522}
-  CameraTopic: /camera4/image/compressed
---- !u!81 &1769075521
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769075516}
-  m_Enabled: 1
 --- !u!20 &1769075522
 Camera:
   m_ObjectHideFlags: 0
@@ -18371,6 +18419,45 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1769075523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769075516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f227919d3df5bb247b67731bb22c13b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uberReplacementShader: {fileID: 4800000, guid: 5ec6d508dc8754044b256adb09c701c8, type: 3}
+  connectRos: {fileID: 523305140}
+  DepthTopic: /unity_camera_6/depth/compressed
+  frame_id: camera
+  depthWidth: 1280
+  depthHeight: 720
+  publishHz: 4
+  depthCam: {fileID: 0}
+  lineRendererObject: {fileID: 0}
+--- !u!114 &1769075524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769075516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b07d562c7cd654da7b102c119790f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carCamera: {fileID: 1769075522}
+  connectRos: {fileID: 523305140}
+  CameraTopic: /unity_camera_6/image/compressed
+  width: 1280
+  height: 720
+  publishhz: 4
 --- !u!1 &1776054736
 GameObject:
   m_ObjectHideFlags: 0
@@ -22561,8 +22648,7 @@ GameObject:
   - component: {fileID: 2103055462}
   - component: {fileID: 2103055461}
   - component: {fileID: 2103055460}
-  - component: {fileID: 2103055459}
-  - component: {fileID: 2103055458}
+  - component: {fileID: 2103055464}
   - component: {fileID: 2103055463}
   m_Layer: 0
   m_Name: Camera4
@@ -22570,35 +22656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2103055458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103055457}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7256cf83afd70cd4fad781b01ede3bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  depthCamera: {fileID: 2103055461}
-  cameraId: 4
---- !u!114 &2103055459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103055457}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bafd1a8c362d16543a826584d39b326e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carCamera: {fileID: 2103055461}
-  CameraTopic: /camera4/image/compressed
+  m_IsActive: 0
 --- !u!81 &2103055460
 AudioListener:
   m_ObjectHideFlags: 0
@@ -22606,7 +22664,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103055457}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2103055461
 Camera:
   m_ObjectHideFlags: 0
@@ -22682,15 +22740,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 2103055457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc112e036c656840a945ef3eb2a7bc1, type: 3}
+  m_Script: {fileID: 11500000, guid: f227919d3df5bb247b67731bb22c13b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rgbCamera: {fileID: 2103055461}
-  depthCamera: {fileID: 2103055461}
-  cameraId: 4
-  jpegQuality: 50
-  captureFrequency: 2
-  useDepthCamera: 1
+  uberReplacementShader: {fileID: 4800000, guid: 5ec6d508dc8754044b256adb09c701c8, type: 3}
+  connectRos: {fileID: 523305140}
+  DepthTopic: /unity_camera_4/depth/compressed
+  frame_id: camera
+  depthWidth: 1280
+  depthHeight: 720
+  publishHz: 4
+  depthCam: {fileID: 0}
+  lineRendererObject: {fileID: 0}
+--- !u!114 &2103055464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103055457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b07d562c7cd654da7b102c119790f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carCamera: {fileID: 2103055461}
+  connectRos: {fileID: 523305140}
+  CameraTopic: /unity_camera_4/image/compressed
+  width: 1280
+  height: 720
+  publishhz: 4
 --- !u!1 &2115593050
 GameObject:
   m_ObjectHideFlags: 0
@@ -25027,6 +25106,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1344257244}
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 543450652786413772}

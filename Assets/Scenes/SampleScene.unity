@@ -2973,7 +2973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &200526964
 Transform:
   m_ObjectHideFlags: 0
@@ -8673,7 +8673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carCamera: {fileID: 1919312154}
   connectRos: {fileID: 523305140}
-  CameraTopic: /unity_camera_1/image/compressed
+  CameraTopic: /unity_camera_1/camera_1/color/image_raw/compressed
   width: 1280
   height: 720
   publishhz: 4
@@ -8691,7 +8691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uberReplacementShader: {fileID: 4800000, guid: 5ec6d508dc8754044b256adb09c701c8, type: 3}
   connectRos: {fileID: 523305140}
-  DepthTopic: /unity_camera_1/depth/compressed
+  DepthTopic: /unity_camera_1/camera_1/depth/image_rect_raw
   frame_id: camera
   depthWidth: 1280
   depthHeight: 720
@@ -12254,7 +12254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1197825285
 Transform:
   m_ObjectHideFlags: 0
@@ -13641,7 +13641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1291734634
 Transform:
   m_ObjectHideFlags: 0
@@ -13740,7 +13740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1292595718
 Transform:
   m_ObjectHideFlags: 0
@@ -15896,7 +15896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1476774767
 Transform:
   m_ObjectHideFlags: 0
@@ -21143,15 +21143,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24120b7e4ff02b04e857331aa64019e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.44
+      value: -2.167
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24120b7e4ff02b04e857331aa64019e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.74
+      value: 0.775
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24120b7e4ff02b04e857331aa64019e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.21
+      value: -0.224
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24120b7e4ff02b04e857331aa64019e8, type: 3}
       propertyPath: m_LocalRotation.w

@@ -67,7 +67,7 @@ public class SceneObjectsPublisher : MonoBehaviour
     {
         foreach (var obj in sceneObjects)
         {
-            Vector3 pos = obj.transform.position;
+            Vector3 pos = obj.transform.localPosition;
             float[] dists = ComputeDistances(pos);
 
             // 構建距離陣列 JSON
@@ -99,7 +99,7 @@ public class SceneObjectsPublisher : MonoBehaviour
 
         float[] dists = new float[cameras.Length];
         for (int i = 0; i < cameras.Length; i++)
-            dists[i] = Vector3.Distance(pos, cameras[i].transform.position);
+            dists[i] = Vector3.Distance(pos, cameras[i].transform.localPosition);
         return dists;
     }
 }

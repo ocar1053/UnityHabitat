@@ -48,7 +48,7 @@ public class SceneObjectsPublisher : MonoBehaviour
                 ""type"": ""unity_object_info_msg/msg/ObjectInfo""
             }}";
 
-            Debug.Log($"Advertising topic: {topic}");
+           
             connectRos.ws.Send(advertiseMessage);
         }
     }
@@ -67,6 +67,7 @@ public class SceneObjectsPublisher : MonoBehaviour
     {
         foreach (var obj in sceneObjects)
         {
+            
             Vector3 pos = obj.transform.localPosition;
             float[] dists = ComputeDistances(pos);
 
@@ -81,7 +82,7 @@ public class SceneObjectsPublisher : MonoBehaviour
             }}";
 
             string topic = perObjectTopic ? $"{topicBase}/{obj.name}" : topicBase;
-            Debug.Log($"Publishing to topic: {topic}");
+            
             string publishMessage = $@"{{
                 ""op"": ""publish"",
                 ""topic"": ""{topic}"",
@@ -99,7 +100,7 @@ public class SceneObjectsPublisher : MonoBehaviour
 
         float[] dists = new float[cameras.Length];
         for (int i = 0; i < cameras.Length; i++)
-            dists[i] = Vector3.Distance(pos, cameras[i].transform.localPosition);
+            dists[i] = Vector3.Distance(pos, cameras[i].transform.localPosition) * 1000f; // 轉換為毫米
         return dists;
     }
 }

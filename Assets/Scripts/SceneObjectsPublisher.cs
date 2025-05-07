@@ -69,8 +69,8 @@ public class SceneObjectsPublisher : MonoBehaviour
         {
             
             Vector3 pos = obj.transform.localPosition;
-            float[] dists = ComputeDistances(pos);
-
+            // float[] dists = ComputeDistances(pos);
+            float[] dists = ComputeLocalDepths(pos);
             // 構建距離陣列 JSON
             string distancesJson = "[" + string.Join(",", Array.ConvertAll(dists, d => d.ToString())) + "]";
 
@@ -92,7 +92,26 @@ public class SceneObjectsPublisher : MonoBehaviour
             connectRos.ws.Send(publishMessage);
         }
     }
+    float[] ComputeLocalDepths(Vector3 objLocalPos)
+    {
+        if (cameras == null || cameras.Length == 0)
+            return new float[0];
 
+        float[] depths = new float[cameras.Length];
+        for (int i = 0; i < cameras.Length; i++)
+        {
+            var cam = cameras[i];
+            // 1) 取得物件在父空間下的 local 向量
+            Vector3 toObjLocal = objLocalPos - cam.transform.localPosition;
+            // 2) 取得相機在父空間下的 forward 向量
+            //    （localRotation * Vector3.forward = 把 local-space forward 旋轉到父空間）
+            Vector3 forwardLocal = cam.transform.localRotation * Vector3.forward;
+            // 3) 投影取得沿光軸距離
+            float depth = Vector3.Dot(toObjLocal, forwardLocal);
+            depths[i] = depth * 1000f; // 換成毫米
+        }
+        return depths;
+    }
     float[] ComputeDistances(Vector3 pos)
     {
         if (cameras == null || cameras.Length == 0)

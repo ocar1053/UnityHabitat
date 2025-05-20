@@ -29,9 +29,10 @@ public class RosCameraPublish : MonoBehaviour
         // 這裡使用 RGBA32，假設資料能直接對應，如有色彩偏差可能需要調整。
         texture2D = new Texture2D(width, height, TextureFormat.RGBA32, false);
         // rect = new Rect(0, 0, carCamera.pixelWidth, carCamera.pixelHeight);
-
+        
         AdvertiseTopic();
         StartCoroutine(PublishImage());
+        
     }
 
     private IEnumerator PublishImage()
@@ -80,6 +81,8 @@ public class RosCameraPublish : MonoBehaviour
             ""topic"": ""{CameraTopic}"",
             ""type"": ""sensor_msgs/msg/CompressedImage""
         }}";
+
+        Debug.Log(connectRos);
         connectRos.ws.Send(advertiseMessage);
     }
 
@@ -107,23 +110,4 @@ public class RosCameraPublish : MonoBehaviour
         connectRos.ws.Send(publishMessage);
     }
 
-    // void OnDestroy()
-    // {
-
-
-    //     // 釋放 RenderTexture
-    //     if (renderTexture != null)
-    //     {
-    //         renderTexture.Release();
-    //         Destroy(renderTexture);
-    //     }
-
-    //     // 釋放 Texture2D
-    //     if (texture2D != null)
-    //     {
-    //         Destroy(texture2D);
-    //     }
-
-    //     Debug.Log("Resources have been released.");
-    // }
 }

@@ -32,7 +32,7 @@ public class SceneObjectsPublisher : MonoBehaviour
             Debug.LogError("ConnectRosBridge 尚未配置或未連線");
             return;
         }
-
+        
         AdvertiseTopics();
         StartCoroutine(PublishLoop());
     }
@@ -69,11 +69,25 @@ public class SceneObjectsPublisher : MonoBehaviour
         {
             
             Vector3 pos = obj.transform.localPosition;
-            // float[] dists = ComputeDistances(pos);
+          
             float[] dists = ComputeLocalDepths(pos);
             // 構建距離陣列 JSON
             string distancesJson = "[" + string.Join(",", Array.ConvertAll(dists, d => d.ToString())) + "]";
 
+
+            // doll 質心不在中間，請幫她y + 10 cm
+            if (obj.name == "wine") {
+                pos.y += 0.05f;
+            }
+            if (obj.name == "doll")
+            {
+                pos.y += 0.1f; // 10 cm
+            }
+
+            if (obj.name=="water") 
+            {
+                pos.y += 0.1f; // 10 cm
+            }
             // 構建 msg JSON
             string msgJson = $@"{{
                 ""name"": ""{obj.name}"",
@@ -108,7 +122,7 @@ public class SceneObjectsPublisher : MonoBehaviour
             Vector3 forwardLocal = cam.transform.localRotation * Vector3.forward;
             // 3) 投影取得沿光軸距離
             float depth = Vector3.Dot(toObjLocal, forwardLocal);
-            depths[i] = depth * 1000f; // 換成毫米
+            depths[i] = depth * 1000f; //
         }
         return depths;
     }

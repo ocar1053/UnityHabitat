@@ -13,9 +13,10 @@ public class RosCameraPublish : MonoBehaviour
     private Texture2D texture2D;
     private Rect rect;
     private RenderTexture renderTexture;
-    public int width = 1280;
-    public int height = 720;
+    int width =  1280;
+    int height = 720;
     public float publishhz = 4f; // 10 Hz
+
 
     void Start()
     {
